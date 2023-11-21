@@ -1,6 +1,7 @@
 import streamlit as st
 import pickle
 import pandas as pd
+from models.confernceAuthorRegisteration import ConferenceAuthorRegisteration
 
 
 def main():
@@ -20,16 +21,29 @@ def main():
         
         papers_table = []
         for paper in loggedInUser.getAuthorPapers():
-            papers_table.append([paper.title, paper.abstract, paper.keywords, paper.coAuthorsNames, paper.confCode, paper.document])
-        columns = ['Title', 'Abstract', 'Keywords', 'Co-Authors Names', 'Conference Code', 'Document Size']
+            papers_table.append([paper.title,paper.paperNo, paper.abstract, paper.keywords, paper.coAuthorsNames, paper.confName,paper.reviewed, paper.document])
+        columns = ['Title','Paper No.', 'Abstract', 'Keywords', 'Co-Authors Names', 'Conference Name','Reviewed', 'Document Size']
         
         st.title('Hey ' + loggedInUser.name + '👋!')
         
-        st.subheader('Your Papers')
+        st.subheader('Your Papers 📝')
         
         data = pd.DataFrame(papers_table, columns = columns)
         
-        st.table(data)
+        st.data_editor(data, disabled=True)
+        
+        
+        st.subheader('Registerered Conferences 👥')
+        
+        conferences_table = []
+        for conf in loggedInUser.getRegisteredConferences():
+            print(conf.authorId)
+            conferences_table.append([conf.confName,conf.authorId, conf.acceptedPaperNo, conf.creditCardDetails, conf.mealChoice, conf.reciept])
+        columns = ['Conference Name', 'Author ID', 'Accepted Paper No.', 'Credit Card Details', 'Meal Choice', 'Reciept']
+        
+        data = pd.DataFrame(conferences_table, columns = columns)       
+        st.data_editor(data, disabled=True) 
+        
         
         
         if st.button('Logout'):
