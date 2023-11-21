@@ -6,10 +6,11 @@ from models.author import Author
 def main():
     st.subheader('Sign In')
     
+    column = st.columns(1)
     
 
-    username = st.text_input('Username')
-    password = st.text_input('Password', type='password')
+    username = column[0].text_input('Username')
+    password = column[0].text_input('Password', type='password')
     
     
     with open('data/authors.dat', 'rb') as f:
@@ -20,7 +21,7 @@ def main():
 
    
     flag = False
-    if st.button('Sign In'):
+    if st.button('Sign In', type= 'primary'):
        for i in range (len(users)):
            if users[i].login(username, password):
                   flag = True
@@ -32,6 +33,11 @@ def main():
                   break
        if not flag:
                  st.error('Incorrect username/password')
+    
+    
+    with open('data/loggedInUser.dat', 'wb') as f:
+              pickle.dump(loggedInUser, f)
+    
        
               
 def redirect_to_main_page():
