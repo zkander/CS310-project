@@ -7,4 +7,4 @@ class Conference:
               self.submissionDeadline = submissionDeadline
               self.confCode = confCode
        
-              
+       

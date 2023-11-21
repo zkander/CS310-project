@@ -23,6 +23,7 @@ class Author(User):
                      with open("data/papers.csv", "wb") as file:
                             pickle.dump(papers, file)
                      print("Paper submitted successfully")
+                     return True
        
        def registerInConference(self, confName: str, paperTitle: str, creditCardDetails: str, mealChoice: str):
               
@@ -43,13 +44,15 @@ class Author(User):
               try:
                      with open('data/registeredConferences.csv', 'rb') as f:
                             conferences = pickle.load(f)
-                     conferences.append(ConferenceAuthorRegisteration(confName, self.userId,selectedPaper.paperNo, mealChoice, creditCardDetails, 'paid: 50$'))
+                     conferences.append(ConferenceAuthorRegisteration(confName, self.userId,selectedPaper.paperNo, creditCardDetails, mealChoice, 'paid: 50$'))
               except FileNotFoundError:
                      conferences = []
-                     conferences.append(ConferenceAuthorRegisteration(confName, self.userId,selectedPaper.paperNo, mealChoice, creditCardDetails, 'paid: 50$'))
+                     conferences.append(ConferenceAuthorRegisteration(confName, self.userId,selectedPaper.paperNo,  creditCardDetails,mealChoice, 'paid: 50$'))
               
               with open('data/registeredConferences.csv', 'wb') as f:
                      pickle.dump(conferences, f)
+              
+              return True
                      
               
               
