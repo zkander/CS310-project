@@ -30,7 +30,7 @@ def submitPaper():
      if st.button('Submit'):
           keywords = keywords.split(',')
           co_author_names = co_author_names.split('\n')
-          loggedInUser.submitPaper(title, abstract, keywords, co_author_names, None, str(doc.size)+" bytes")
+          loggedInUser.submitPaper(title,len(loggedInUser.getAuthorPapers())+1, abstract, keywords, co_author_names, None, str(doc.size)+" bytes")
           st.success('Paper submitted successfully!')
           # clear all fields
           title = ''
