@@ -1,7 +1,5 @@
 from models.conference import Conference
 import pickle
-
-
 conferences = [
        Conference("ICML",['15/11/2023','20/11/2023'], '10/11/2023', 123),
        Conference("ICLR",['15/11/2023','20/11/2023'], '10/11/2023', 124),

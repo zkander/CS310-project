@@ -1,5 +1,5 @@
-from user import User
-from paper import Paper
+from models.user import User
+from models.paper import Paper
 
 import pickle
 
