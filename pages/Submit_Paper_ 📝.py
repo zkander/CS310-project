@@ -16,8 +16,8 @@ def submitPaper():
           st.error('You are not logged in!')
           return
      
-     st.subheader('Submit Paper 📝')
-     st.title("Paper Submission Form")
+     st.subheader('Submit Paper Form 📝')
+    
 
      # Form inputs
      title = st.text_input("Title")
