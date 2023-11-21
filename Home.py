@@ -19,7 +19,7 @@ def main():
     
     
 
-   
+    loggedInUser = None
     flag = False
     if st.button('Sign In', type= 'primary'):
        for i in range (len(users)):
